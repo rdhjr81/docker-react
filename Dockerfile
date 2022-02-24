@@ -14,4 +14,4 @@ RUN npm run build
 
 # 2nd phase 
 FROM nginx 
-COPY --from=builder /home/nodeapp/build /usr/share/nginx/html
+COPY --from=builder /home/node/app/build /usr/share/nginx/html
