@@ -1,0 +1,22 @@
+version: '3'
+services:
+  web:
+    #build: . #'.' by convention searches for a file named 'Dockerfile'
+    build:
+      context: . #location of the files in our project, useful if files are not in same dir as the compose file 
+      dockerfile: Dockerfile.dev
+    ports:
+      - "3000:3000"
+    volumes:
+      - /home/node/app/node_modules
+      - .:/home/node/app #'.' is 'pwd'.  map pwd to '/home/node/app'
+  tests:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    #test suite doesnt use ports 
+    volumes:
+      - /home/node/app/node_modules
+      - .:/home/node/app #'.' is 'pwd'.  map pwd to '/home/node/app'
+    #overrride defaulkt cmd 
+    command: [ "npm", "run", "test" ]
