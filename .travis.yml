@@ -7,4 +7,4 @@ before_install:
   - docker build -t rho/docker-react -f Dockerfile.dev . 
 
 script:
-  - docker run -r -CI=TRUE rho/docker-react npm run test
+  - docker run -e -CI=TRUE rho/docker-react npm run test
